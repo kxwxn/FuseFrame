@@ -59,6 +59,8 @@ create table if not exists public.webhook_events (
 create index if not exists attribution_events_anonymous_id_idx on public.attribution_events (anonymous_id);
 create index if not exists attribution_events_user_id_idx on public.attribution_events (user_id);
 create index if not exists attribution_events_source_idx on public.attribution_events (source);
+create index if not exists subscriptions_user_id_idx on public.subscriptions (user_id);
+create index if not exists revenue_events_user_id_idx on public.revenue_events (user_id);
 create index if not exists revenue_events_source_idx on public.revenue_events (source);
 
 alter table public.profiles enable row level security;
@@ -67,13 +69,39 @@ alter table public.attribution_events enable row level security;
 alter table public.revenue_events enable row level security;
 alter table public.webhook_events enable row level security;
 
+drop policy if exists "Users can read own profile" on public.profiles;
+drop policy if exists "Users can read own subscriptions" on public.subscriptions;
+drop policy if exists "No client access to attribution events" on public.attribution_events;
+drop policy if exists "No client access to revenue events" on public.revenue_events;
+drop policy if exists "No client access to webhook events" on public.webhook_events;
+
 create policy "Users can read own profile"
   on public.profiles for select
-  using (auth.uid() = id);
+  to authenticated
+  using ((select auth.uid()) = id);
 
 create policy "Users can read own subscriptions"
   on public.subscriptions for select
-  using (auth.uid() = user_id);
+  to authenticated
+  using ((select auth.uid()) = user_id);
+
+create policy "No client access to attribution events"
+  on public.attribution_events for all
+  to anon, authenticated
+  using (false)
+  with check (false);
+
+create policy "No client access to revenue events"
+  on public.revenue_events for all
+  to anon, authenticated
+  using (false)
+  with check (false);
+
+create policy "No client access to webhook events"
+  on public.webhook_events for all
+  to anon, authenticated
+  using (false)
+  with check (false);
 
 create or replace function private.handle_new_user()
 returns trigger
