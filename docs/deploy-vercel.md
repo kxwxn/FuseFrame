@@ -18,7 +18,7 @@ Copy `.env.example` to `.env.local` locally and add the same values to Vercel:
 - `STRIPE_SECRET_KEY`
 - `STRIPE_WEBHOOK_SECRET`
 - `NEXT_PUBLIC_STRIPE_PRICE_STARTER`
-- `SOURCE_LAUNCH_ADMIN_EMAILS`
+- `FUSE_FRAME_ADMIN_EMAILS`
 
 ## 3. Deploy
 

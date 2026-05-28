@@ -42,7 +42,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: "agency",
     name: "Agency",
-    description: "For teams reusing SourceLaunch across client work.",
+    description: "For teams reusing FuseFrame across client work.",
     price: "$799",
     interval: "one_time",
     stripePriceEnvKey: "NEXT_PUBLIC_STRIPE_PRICE_STARTER",

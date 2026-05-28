@@ -15,7 +15,7 @@ export default function LoginPage() {
             &lt;- Back to home
           </Link>
           <h1 className="mt-10 max-w-2xl font-mono text-5xl font-black leading-tight text-ink">
-            Sign in to wire your SaaS blocks.
+            Sign in to wire your SaaS frame.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
             Magic links keep the starter simple and let your AI agent build on top of one predictable auth flow.

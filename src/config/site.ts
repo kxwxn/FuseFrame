@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "SourceLaunch",
-  tagline: "AI-native SaaS blocks for indie founders.",
+  name: "FuseFrame",
+  tagline: "The AI-ready frame for shipping SaaS faster.",
   description:
-    "Stop rebuilding SaaS plumbing with your AI agent. Plug in tested blocks for auth, payments, dashboards, and revenue attribution.",
+    "Fuse in tested blocks for auth, payments, webhooks, dashboards, and revenue attribution so your AI agent can build the product instead of the plumbing.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   nav: [
     { label: "Blocks", href: "#blocks" },

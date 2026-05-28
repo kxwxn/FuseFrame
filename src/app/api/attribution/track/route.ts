@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       ok: true,
       skipped: true,
-      reason: "SourceLaunch attribution storage is disabled until Supabase environment variables are configured.",
+      reason: "FuseFrame attribution storage is disabled until Supabase environment variables are configured.",
       missing: envStatus.missing,
     });
   }

@@ -6,7 +6,7 @@ type BlockIconProps = {
 const toneClasses = {
   teal: "from-cyan to-emerald-600",
   blue: "from-cobalt to-sky-500",
-  violet: "from-violet-500 to-indigo-500",
+  violet: "from-ember to-orange-400",
 } satisfies Record<BlockIconProps["tone"], string>;
 
 export function BlockIcon({ label, tone }: BlockIconProps) {

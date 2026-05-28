@@ -49,7 +49,7 @@ export async function signInWithMagicLink(
   }
 
   return {
-    message: "Check your email for a SourceLaunch magic link.",
+    message: "Check your email for a FuseFrame magic link.",
     status: "success",
   };
 }

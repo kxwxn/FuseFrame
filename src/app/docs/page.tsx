@@ -4,6 +4,11 @@ import { Header } from "@/components/layout/Header";
 
 const docs = [
   {
+    title: "Brand Direction",
+    description: "Positioning, voice, visual system, and core FuseFrame messages.",
+    href: "docs/brand.md",
+  },
+  {
     title: "Auth Block",
     description: "Supabase magic links, protected route guards, and profile creation.",
     href: "docs/blocks/auth.md",
@@ -20,7 +25,7 @@ const docs = [
   },
   {
     title: "AI Agent Rules",
-    description: "Rules and prompts for extending SourceLaunch one block at a time.",
+    description: "Rules and prompts for extending FuseFrame one block at a time.",
     href: "docs/ai-agent-rules.md",
   },
   {
@@ -41,7 +46,7 @@ export default function DocsPage() {
         <div className="mt-10 max-w-3xl">
           <h1 className="font-mono text-5xl font-black leading-tight text-ink">Block documentation</h1>
           <p className="mt-6 text-lg leading-8 text-muted">
-            SourceLaunch docs are designed for humans and AI agents. Each block has a stable contract, files to
+            FuseFrame docs are designed for humans and AI agents. Each block has a stable contract, files to
             inspect, and verification steps.
           </p>
         </div>

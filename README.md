@@ -1,8 +1,8 @@
-# SourceLaunch
+# FuseFrame
 
-AI-native SaaS blocks for indie founders building with coding agents.
+The AI-ready frame for indie founders building SaaS with coding agents.
 
-SourceLaunch is a cloneable Next.js starter repo with tested blocks for auth, Stripe billing, webhook handling, dashboards, and revenue attribution.
+FuseFrame is a cloneable Next.js starter repo with tested blocks for auth, Stripe billing, webhook handling, dashboards, and revenue attribution.
 
 ## Blocks
 

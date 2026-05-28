@@ -11,14 +11,16 @@ const config: Config = {
     extend: {
       colors: {
         ink: "#050608",
-        muted: "#667085",
-        line: "#d9dee8",
-        panel: "#f8fafc",
-        cyan: "#00a99d",
-        cobalt: "#0b5cff",
+        muted: "#596170",
+        line: "#d8dee9",
+        panel: "#f7f9fc",
+        cyan: "#10cdbd",
+        cobalt: "#2357ff",
+        volt: "#b8ff2c",
+        ember: "#ff5c35",
       },
       boxShadow: {
-        block: "0 16px 40px rgba(15, 23, 42, 0.08)",
+        block: "0 18px 44px rgba(5, 6, 8, 0.09)",
         terminal: "0 24px 70px rgba(5, 6, 8, 0.28)",
       },
       fontFamily: {

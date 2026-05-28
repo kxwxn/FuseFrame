@@ -5,6 +5,7 @@ import { z } from "zod";
 import { getServerEnvStatus } from "@/config/env";
 import { createCheckoutSession } from "@/lib/billing/checkout";
 import { getCurrentUser } from "@/lib/auth/server";
+import { ATTRIBUTION_ANONYMOUS_ID_KEY } from "@/lib/attribution/storage";
 
 const checkoutSchema = z.object({
   planId: z.string().min(1),
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
   }
 
   const cookieStore = await cookies();
-  const anonymousId = cookieStore.get("source_launch_anonymous_id")?.value ?? null;
+  const anonymousId = cookieStore.get(ATTRIBUTION_ANONYMOUS_ID_KEY)?.value ?? null;
 
   try {
     const session = await createCheckoutSession({

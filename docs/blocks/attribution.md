@@ -23,6 +23,6 @@ When an AI agent extends attribution, keep these rules:
 ## Verification
 
 1. Visit `/?utm_source=x&utm_medium=social`.
-2. Confirm `source_launch_first_touch` exists in browser storage.
+2. Confirm `fuse_frame_first_touch` exists in browser storage.
 3. Sign in and complete checkout.
 4. Confirm admin revenue shows source `x`.

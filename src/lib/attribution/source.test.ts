@@ -7,7 +7,7 @@ describe("parseAttribution", () => {
     const source = parseAttribution({
       anonymousId: "anon_1",
       eventType: "visit",
-      url: "https://source.launch/?utm_source=x&utm_medium=social&utm_campaign=launch&utm_content=bio",
+      url: "https://fuseframe.dev/?utm_source=x&utm_medium=social&utm_campaign=launch&utm_content=bio",
       referrer: "https://google.com/search",
     });
 
@@ -18,7 +18,7 @@ describe("parseAttribution", () => {
       utm_campaign: "launch",
       utm_content: "bio",
       referrer: "https://google.com/search",
-      landing_page: "https://source.launch/?utm_source=x&utm_medium=social&utm_campaign=launch&utm_content=bio",
+      landing_page: "https://fuseframe.dev/?utm_source=x&utm_medium=social&utm_campaign=launch&utm_content=bio",
     });
   });
 
@@ -26,8 +26,8 @@ describe("parseAttribution", () => {
     const source = parseAttribution({
       anonymousId: "anon_1",
       eventType: "visit",
-      url: "https://source.launch/",
-      referrer: "https://www.producthunt.com/posts/source-launch",
+      url: "https://fuseframe.dev/",
+      referrer: "https://www.producthunt.com/posts/fuse-frame",
     });
 
     expect(source.source).toBe("producthunt.com");
@@ -38,7 +38,7 @@ describe("parseAttribution", () => {
     const source = parseAttribution({
       anonymousId: "anon_1",
       eventType: "visit",
-      url: "https://source.launch/",
+      url: "https://fuseframe.dev/",
       referrer: "",
     });
 
@@ -51,13 +51,13 @@ describe("preserveFirstTouch", () => {
     const first = parseAttribution({
       anonymousId: "anon_1",
       eventType: "visit",
-      url: "https://source.launch/?utm_source=indiehackers",
+      url: "https://fuseframe.dev/?utm_source=indiehackers",
       referrer: null,
     });
     const later = parseAttribution({
       anonymousId: "anon_1",
       eventType: "visit",
-      url: "https://source.launch/?utm_source=twitter",
+      url: "https://fuseframe.dev/?utm_source=twitter",
       referrer: null,
     });
 

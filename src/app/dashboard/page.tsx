@@ -8,6 +8,7 @@ import { getServerEnvStatus } from "@/config/env";
 import { pricingPlans } from "@/config/pricing";
 import { requireUser } from "@/lib/auth/server";
 import { recordAttributionEvent } from "@/lib/attribution/server";
+import { ATTRIBUTION_ANONYMOUS_ID_KEY, ATTRIBUTION_FIRST_TOUCH_KEY } from "@/lib/attribution/storage";
 import type { ResolvedAttribution } from "@/lib/attribution/types";
 
 export const dynamic = "force-dynamic";
@@ -58,8 +59,8 @@ export default async function DashboardPage() {
 
   const user = await requireUser();
   const cookieStore = await cookies();
-  const anonymousId = cookieStore.get("source_launch_anonymous_id")?.value;
-  const firstTouch = readFirstTouch(cookieStore.get("source_launch_first_touch")?.value);
+  const anonymousId = cookieStore.get(ATTRIBUTION_ANONYMOUS_ID_KEY)?.value;
+  const firstTouch = readFirstTouch(cookieStore.get(ATTRIBUTION_FIRST_TOUCH_KEY)?.value);
 
   if (anonymousId) {
     await recordAttributionEvent({
@@ -81,7 +82,7 @@ export default async function DashboardPage() {
       <section className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
         <div className="rounded-lg border border-line bg-white p-8 shadow-sm">
           <p className="font-mono text-sm text-muted">Signed in as {user.email}</p>
-          <h1 className="mt-4 font-mono text-4xl font-black text-ink">Your SourceLaunch workspace</h1>
+          <h1 className="mt-4 font-mono text-4xl font-black text-ink">Your FuseFrame workspace</h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
             This dashboard is the protected surface your buyers start from. Replace the starter checklist with your
             product workflow when your core feature is ready.

@@ -4,9 +4,8 @@ import { useEffect } from "react";
 
 import type { ResolvedAttribution } from "@/lib/attribution/types";
 import { parseAttribution, preserveFirstTouch } from "@/lib/attribution/source";
+import { ATTRIBUTION_ANONYMOUS_ID_KEY, ATTRIBUTION_FIRST_TOUCH_KEY } from "@/lib/attribution/storage";
 
-const ANONYMOUS_ID_KEY = "source_launch_anonymous_id";
-const FIRST_TOUCH_KEY = "source_launch_first_touch";
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
 
 function createAnonymousId(): string {
@@ -22,7 +21,7 @@ function writeCookie(name: string, value: string): void {
 }
 
 function readStoredAttribution(): ResolvedAttribution | null {
-  const stored = window.localStorage.getItem(FIRST_TOUCH_KEY);
+  const stored = window.localStorage.getItem(ATTRIBUTION_FIRST_TOUCH_KEY);
 
   if (!stored) {
     return null;
@@ -37,9 +36,9 @@ function readStoredAttribution(): ResolvedAttribution | null {
 
 export function AttributionCapture() {
   useEffect(() => {
-    const anonymousId = window.localStorage.getItem(ANONYMOUS_ID_KEY) ?? createAnonymousId();
-    window.localStorage.setItem(ANONYMOUS_ID_KEY, anonymousId);
-    writeCookie(ANONYMOUS_ID_KEY, anonymousId);
+    const anonymousId = window.localStorage.getItem(ATTRIBUTION_ANONYMOUS_ID_KEY) ?? createAnonymousId();
+    window.localStorage.setItem(ATTRIBUTION_ANONYMOUS_ID_KEY, anonymousId);
+    writeCookie(ATTRIBUTION_ANONYMOUS_ID_KEY, anonymousId);
 
     const next = parseAttribution({
       anonymousId,
@@ -49,8 +48,8 @@ export function AttributionCapture() {
     });
     const firstTouch = preserveFirstTouch(readStoredAttribution(), next);
 
-    window.localStorage.setItem(FIRST_TOUCH_KEY, JSON.stringify(firstTouch));
-    writeCookie(FIRST_TOUCH_KEY, JSON.stringify(firstTouch));
+    window.localStorage.setItem(ATTRIBUTION_FIRST_TOUCH_KEY, JSON.stringify(firstTouch));
+    writeCookie(ATTRIBUTION_FIRST_TOUCH_KEY, JSON.stringify(firstTouch));
 
     void fetch("/api/attribution/track", {
       method: "POST",

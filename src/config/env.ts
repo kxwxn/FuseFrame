@@ -11,7 +11,7 @@ const serverEnvSchema = publicEnvSchema.extend({
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
   STRIPE_SECRET_KEY: z.string().min(1),
   STRIPE_WEBHOOK_SECRET: z.string().min(1),
-  SOURCE_LAUNCH_ADMIN_EMAILS: z.string().default(""),
+  FUSE_FRAME_ADMIN_EMAILS: z.string().default(""),
 });
 
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
@@ -31,7 +31,7 @@ export function getPublicEnv(): PublicEnv {
   const parsed = publicEnvSchema.safeParse(process.env);
 
   if (!parsed.success) {
-    throw new Error(`Missing SourceLaunch public environment variables: ${formatEnvError(parsed.error)}`);
+    throw new Error(`Missing FuseFrame public environment variables: ${formatEnvError(parsed.error)}`);
   }
 
   return parsed.data;
@@ -57,7 +57,7 @@ export function getServerEnv(): ServerEnv {
   const parsed = serverEnvSchema.safeParse(process.env);
 
   if (!parsed.success) {
-    throw new Error(`Missing SourceLaunch server environment variables: ${formatEnvError(parsed.error)}`);
+    throw new Error(`Missing FuseFrame server environment variables: ${formatEnvError(parsed.error)}`);
   }
 
   return parsed.data;
@@ -82,7 +82,7 @@ export function getServerEnvStatus(): EnvStatus {
 export function getAdminEmails(): string[] {
   const env = getServerEnv();
 
-  return env.SOURCE_LAUNCH_ADMIN_EMAILS.split(",")
+  return env.FUSE_FRAME_ADMIN_EMAILS.split(",")
     .map((email) => email.trim().toLowerCase())
     .filter(Boolean);
 }

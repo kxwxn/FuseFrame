@@ -210,7 +210,7 @@ Phase 4:
 
 The MVP will use these defaults unless a later implementation constraint forces a change:
 
-- Working product name: SourceLaunch.
+- Product name: FuseFrame.
 - Database: Supabase Postgres.
 - Auth provider: Supabase Auth.
 - Payment processor inside the starter: Stripe Checkout.

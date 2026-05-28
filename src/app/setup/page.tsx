@@ -11,7 +11,7 @@ export default function SetupPage() {
       <SetupRequired
         description="Copy .env.example to .env.local, add Supabase and Stripe credentials, then restart the dev server."
         missing={status.missing}
-        title={status.configured ? "SourceLaunch is configured." : "Connect Supabase and Stripe to unlock app routes."}
+        title={status.configured ? "FuseFrame is configured." : "Connect Supabase and Stripe to unlock app routes."}
       />
     </main>
   );

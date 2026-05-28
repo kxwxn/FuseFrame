@@ -1,6 +1,6 @@
 # AI Agent Rules
 
-SourceLaunch is designed for AI coding agents. Treat each block as a stable contract, not loose starter code.
+FuseFrame is designed for AI coding agents. Treat each block as a stable contract, not loose starter code.
 
 ## Rules
 
@@ -17,7 +17,7 @@ SourceLaunch is designed for AI coding agents. Treat each block as a stable cont
 Use this prompt when extending the starter:
 
 ```text
-You are editing SourceLaunch, an AI-native SaaS block system.
+You are editing FuseFrame, an AI-ready SaaS frame.
 Install or extend one block at a time.
 Keep the public interface documented.
 Write tests for pure logic.

@@ -1,5 +1,7 @@
 create extension if not exists "pgcrypto";
 
+create schema if not exists private;
+
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   email text not null,
@@ -73,11 +75,11 @@ create policy "Users can read own subscriptions"
   on public.subscriptions for select
   using (auth.uid() = user_id);
 
-create or replace function public.handle_new_user()
+create or replace function private.handle_new_user()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = public, auth
 as $$
 begin
   insert into public.profiles (id, email)
@@ -92,4 +94,4 @@ drop trigger if exists on_auth_user_created on auth.users;
 
 create trigger on_auth_user_created
   after insert on auth.users
-  for each row execute procedure public.handle_new_user();
+  for each row execute procedure private.handle_new_user();

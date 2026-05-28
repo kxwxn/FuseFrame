@@ -3,28 +3,28 @@ import { BlockIcon } from "@/components/landing/BlockIcon";
 const canvasBlocks = [
   {
     name: "Auth Block",
-    description: "Users & sessions",
+    description: "Users and sessions",
     icon: "A",
     tone: "teal",
     position: "left-[8%] top-[18%]",
   },
   {
     name: "Stripe Block",
-    description: "Payments & billing",
+    description: "Payments and billing",
     icon: "$",
     tone: "blue",
     position: "right-[5%] top-[18%]",
   },
   {
     name: "Webhook Block",
-    description: "Events in",
+    description: "Event wiring",
     icon: "W",
     tone: "violet",
     position: "left-[35%] top-[42%]",
   },
   {
     name: "Dashboard Block",
-    description: "Metrics & actions",
+    description: "Metrics and actions",
     icon: "D",
     tone: "teal",
     position: "left-[8%] bottom-[14%]",
@@ -43,14 +43,14 @@ export function BlockCanvas() {
     <div className="product-canvas relative min-h-[560px] overflow-hidden rounded-lg border border-line bg-white shadow-block">
       <div className="flex h-16 items-center justify-between border-b border-line bg-white px-5">
         <div className="flex items-center gap-4">
-          <span className="grid size-10 place-items-center rounded-md bg-cobalt font-mono text-xl font-bold text-white">
-            +
+          <span className="grid size-10 place-items-center rounded-md bg-ink font-mono text-xl font-bold text-volt">
+            F
           </span>
-          <span className="font-mono text-base font-semibold text-ink">My SaaS App</span>
+          <span className="font-mono text-base font-semibold text-ink">FuseFrame App</span>
           <span className="size-2 rounded-full bg-cyan" />
-          <span className="text-sm text-muted">Production</span>
+          <span className="text-sm text-muted">Ready to ship</span>
         </div>
-        <span className="font-mono text-sm text-muted">blocks.json</span>
+        <span className="font-mono text-sm text-muted">frame.json</span>
       </div>
 
       <div className="absolute left-0 top-16 hidden h-[calc(100%-4rem)] w-16 flex-col items-center gap-8 border-r border-line bg-white pt-6 text-ink md:flex">

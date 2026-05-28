@@ -5,7 +5,7 @@ export type TransactionalEmail = {
 };
 
 export async function sendTransactionalEmail(email: TransactionalEmail): Promise<void> {
-  console.info("SourceLaunch email placeholder", {
+  console.info("FuseFrame email placeholder", {
     to: email.to,
     subject: email.subject,
   });
