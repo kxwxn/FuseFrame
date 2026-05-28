@@ -16,6 +16,10 @@ const serverEnvSchema = publicEnvSchema.extend({
 
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
+export type EnvStatus = {
+  configured: boolean;
+  missing: string[];
+};
 
 function formatEnvError(error: z.ZodError): string {
   return error.issues
@@ -33,6 +37,22 @@ export function getPublicEnv(): PublicEnv {
   return parsed.data;
 }
 
+export function getPublicEnvStatus(): EnvStatus {
+  const parsed = publicEnvSchema.safeParse(process.env);
+
+  if (parsed.success) {
+    return {
+      configured: true,
+      missing: [],
+    };
+  }
+
+  return {
+    configured: false,
+    missing: parsed.error.issues.map((issue) => issue.path.join(".")),
+  };
+}
+
 export function getServerEnv(): ServerEnv {
   const parsed = serverEnvSchema.safeParse(process.env);
 
@@ -41,6 +61,22 @@ export function getServerEnv(): ServerEnv {
   }
 
   return parsed.data;
+}
+
+export function getServerEnvStatus(): EnvStatus {
+  const parsed = serverEnvSchema.safeParse(process.env);
+
+  if (parsed.success) {
+    return {
+      configured: true,
+      missing: [],
+    };
+  }
+
+  return {
+    configured: false,
+    missing: parsed.error.issues.map((issue) => issue.path.join(".")),
+  };
 }
 
 export function getAdminEmails(): string[] {

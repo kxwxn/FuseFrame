@@ -1,4 +1,6 @@
 import { Header } from "@/components/layout/Header";
+import { SetupRequired } from "@/components/setup/SetupRequired";
+import { getServerEnvStatus } from "@/config/env";
 import { formatCurrencyFromCents } from "@/lib/dashboard/metrics";
 import { getAdminMetrics } from "@/lib/dashboard/server";
 import { requireAdmin } from "@/lib/auth/server";
@@ -6,6 +8,21 @@ import { requireAdmin } from "@/lib/auth/server";
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
+  const envStatus = getServerEnvStatus();
+
+  if (!envStatus.configured) {
+    return (
+      <main className="min-h-screen bg-slate-50">
+        <Header />
+        <SetupRequired
+          description="The admin dashboard reads attribution and revenue events from Supabase. Add the missing keys in .env.local, then restart the dev server."
+          missing={envStatus.missing}
+          title="Connect Supabase and Stripe before opening analytics."
+        />
+      </main>
+    );
+  }
+
   await requireAdmin();
   const metrics = await getAdminMetrics();
 

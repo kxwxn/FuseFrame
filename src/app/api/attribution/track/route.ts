@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { getServerEnvStatus } from "@/config/env";
 import { recordAttributionEvent } from "@/lib/attribution/server";
 
 const trackSchema = z.object({
@@ -17,6 +18,17 @@ const trackSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  const envStatus = getServerEnvStatus();
+
+  if (!envStatus.configured) {
+    return NextResponse.json({
+      ok: true,
+      skipped: true,
+      reason: "SourceLaunch attribution storage is disabled until Supabase environment variables are configured.",
+      missing: envStatus.missing,
+    });
+  }
+
   const json: unknown = await request.json();
   const parsed = trackSchema.safeParse(json);
 

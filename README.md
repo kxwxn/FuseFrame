@@ -23,6 +23,8 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+Visit `/setup` before wiring real data. It shows which Supabase and Stripe environment variables are still missing.
+
 ## Verification
 
 ```bash

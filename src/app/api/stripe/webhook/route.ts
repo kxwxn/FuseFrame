@@ -1,10 +1,23 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
+import { getServerEnvStatus } from "@/config/env";
 import { getStripe, getStripeWebhookSecret } from "@/lib/billing/stripe";
 import { processStripeWebhookEvent } from "@/lib/billing/webhook";
 
 export async function POST(request: Request) {
+  const envStatus = getServerEnvStatus();
+
+  if (!envStatus.configured) {
+    return NextResponse.json(
+      {
+        error: "Configure Supabase and Stripe environment variables before receiving webhooks.",
+        missing: envStatus.missing,
+      },
+      { status: 503 },
+    );
+  }
+
   const body = await request.text();
   const headerStore = await headers();
   const signature = headerStore.get("stripe-signature");

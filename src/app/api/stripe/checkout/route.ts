@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { getServerEnvStatus } from "@/config/env";
 import { createCheckoutSession } from "@/lib/billing/checkout";
 import { getCurrentUser } from "@/lib/auth/server";
 
@@ -10,6 +11,18 @@ const checkoutSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  const envStatus = getServerEnvStatus();
+
+  if (!envStatus.configured) {
+    return NextResponse.json(
+      {
+        error: "Configure Supabase and Stripe environment variables before starting checkout.",
+        missing: envStatus.missing,
+      },
+      { status: 503 },
+    );
+  }
+
   const user = await getCurrentUser();
 
   if (!user) {

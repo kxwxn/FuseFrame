@@ -34,6 +34,7 @@ Then import the repository in Vercel and deploy.
 ## 4. Verify
 
 - Visit the production URL.
+- Visit `/setup` and confirm no required environment variables are missing.
 - Confirm attribution capture on a URL with `utm_source`.
 - Sign in with a magic link.
 - Complete a Stripe test checkout.

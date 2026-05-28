@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 
+import { getPublicEnvStatus } from "@/config/env";
 import { siteConfig } from "@/config/site";
 import { createSupabaseServerClient } from "@/lib/db/supabase";
 
@@ -14,6 +15,15 @@ export async function signInWithMagicLink(
   _previousState: LoginActionState,
   formData: FormData,
 ): Promise<LoginActionState> {
+  const envStatus = getPublicEnvStatus();
+
+  if (!envStatus.configured) {
+    return {
+      message: `Configure Supabase first. Missing: ${envStatus.missing.join(", ")}`,
+      status: "error",
+    };
+  }
+
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
 
   if (!email || !email.includes("@")) {

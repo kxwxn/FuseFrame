@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import { CheckoutButton } from "@/components/billing/CheckoutButton";
 import { Header } from "@/components/layout/Header";
+import { SetupRequired } from "@/components/setup/SetupRequired";
+import { getServerEnvStatus } from "@/config/env";
 import { pricingPlans } from "@/config/pricing";
 import { requireUser } from "@/lib/auth/server";
 import { recordAttributionEvent } from "@/lib/attribution/server";
@@ -39,6 +41,21 @@ function readFirstTouch(value: string | undefined): ResolvedAttribution | null {
 }
 
 export default async function DashboardPage() {
+  const envStatus = getServerEnvStatus();
+
+  if (!envStatus.configured) {
+    return (
+      <main className="min-h-screen bg-slate-50">
+        <Header />
+        <SetupRequired
+          description="The dashboard depends on Supabase Auth, Supabase Postgres, and Stripe. Add the missing keys in .env.local, then restart the dev server."
+          missing={envStatus.missing}
+          title="Connect Supabase and Stripe before opening the dashboard."
+        />
+      </main>
+    );
+  }
+
   const user = await requireUser();
   const cookieStore = await cookies();
   const anonymousId = cookieStore.get("source_launch_anonymous_id")?.value;
