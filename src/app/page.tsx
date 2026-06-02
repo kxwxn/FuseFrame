@@ -65,11 +65,11 @@ export default function HomePage() {
               </h1>
               <p className="mt-8 max-w-lg text-lg leading-8 text-muted">{siteConfig.description}</p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <Link className="primary-button" href="#pricing">
-                  Get early access -&gt;
+                <Link className="primary-button" href="/checklist">
+                  Get the checklist -&gt;
                 </Link>
-                <Link className="secondary-button" href="#blocks">
-                  View blocks -&gt;
+                <Link className="secondary-button" href="#pricing">
+                  View early access -&gt;
                 </Link>
               </div>
               <div className="mt-12">
